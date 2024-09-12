@@ -2,7 +2,7 @@
 
 **MovieMatch** is an Android application designed to help users connect and discover movies in a social setting. The app allows users to create or join rooms, with the host selecting movie genres and swiping through potential movie options. Guests can view the genres selected by the host. Future updates will introduce more robust features, including swiping and matching functionality for guests.
 
-![MovieMatch Demo](#) <!-- Add your images here -->
+<img src="images/Db.jpg" alt="Login Screen" width="350" height="700"> 
 
 ## Key Features
 
@@ -60,9 +60,26 @@ To set up the project on your local machine:
 ## Screenshots
 
 <!-- Add screenshots here -->
-- **Login Screen**: ![Login](#)
-- **Room Creation**: ![Create Room](#)
-- **Genre Selection**: ![Genre Selection](#)
+## Screenshots
+
+- **Home Page**:
+  <img src="images/Home.jpg" alt="Home Page" width="350" style="display:block; margin-bottom:10px;">
+
+- **Login Screen**:
+  <img src="images/SignIn.jpg" alt="Login Screen" width="350" style="display:block; margin-bottom:10px;">
+
+- **Room Creation**:
+  <img src="images/Host.jpg" alt="Room Creation" width="350" style="display:block; margin-bottom:10px;">
+
+- **Card View**:
+  <img src="images/Card.jpg" alt="Card View" width="350" style="display:block; margin-bottom:10px;">
+
+- **Swiping View**:
+  <img src="images/Swipnig.jpg" alt="Swiping View" width="350" style="display:block; margin-bottom:10px;">
+
+- **Genre Selection**:
+  <img src="images/Genre.jpg" alt="Genre Selection" width="350" style="display:block; margin-bottom:10px;">
+
 
 
 
