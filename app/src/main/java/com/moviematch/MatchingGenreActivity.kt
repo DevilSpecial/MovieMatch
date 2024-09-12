@@ -82,9 +82,9 @@ class MatchingGenreActivity : AppCompatActivity(),CardStackListener {
     private fun sendGenretoDB(pw:String?) {
         val roomRef = database.getReference("room").child(pw.toString())
         roomRef.get().addOnSuccessListener { dataSnapshot ->
-            val roomData = dataSnapshot.getValue(RoomData::class.java)
             roomRef.child("genres").setValue(genreId)
-        }.addOnFailureListener {
+        }.addOnFailureListener {exception ->
+            Log.e("FirebaseError", "Failed to send genre to DB", exception)
             Toast.makeText(this, "Room not found or other error.", Toast.LENGTH_SHORT).show()
         }
     }
