@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="https" />
+        </intent>
+
+        <package android:name="com.google.android.youtube" />
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo_s8v2jgfe8p_transformed1_removebg_preview"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_s8v2jgfe8p_transformed1_removebg_preview"
+        android:supportsRtl="true"
+        android:theme="@style/Base.Theme.MovieMatch"
+        tools:targetApi="31">
+        <activity
+            android:name=".Rooms.GuestActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".Rooms.HostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Rooms.StartRoom"
+            android:exported="false" />
+        <activity
+            android:name=".tempActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".SwipeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MatchingGenreActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UserNameActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".TVDescActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MoviesImdbMore"
+            android:exported="false" />
+        <activity
+            android:name=".GenderActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PasswordActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".PhoneNumberActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Matching"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true">
+
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
+        <activity
+            android:name=".SigninPage"
+            android:exported="false"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="#22222E"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PhoneNumberActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:id="@+id/tv_signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Hello,"
+            android:textColor="#A29E9E"
+            android:textSize="40sp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/poppins"
+            android:text="Enter your phone number for otp verification"
+            android:textColor="#A29E9E"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_signup" />
+        <LinearLayout
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/signin_btn_back"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_text">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Phone Number"
+                android:textColor="#A29E9E"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+
+        android:fontFamily="@font/poppins_bold"
+        android:text="+91"
+        android:textColor="#A29E9E"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent" />
+            <EditText
+                android:imeOptions="actionNext"
+                android:id="@+id/et_num"
+                android:maxLength="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/signin_etv_bg"
+                android:fontFamily="@font/poppins"
+                android:hint="123456789"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="#A29E9E"
+                android:textColorHint="#4E4E4E"
+                android:layout_marginBottom="25dp"
+                android:textSize="21sp" />
+</LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tverror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins"
+            android:text="**All Fields are required"
+            android:textAlignment="center"
+            android:textColor="#D94C54 "
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/signin_btn_submit"
+            android:fontFamily="@font/poppins"
+            android:padding="15dp"
+            android:paddingVertical="15dp"
+            android:text="Send OTP"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tverror"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tverror"
+            app:layout_constraintVertical_bias="0.51" />
+
+
+        <TextView
+            android:id="@+id/tv_otpNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:fontFamily="@font/poppins_bold"
+            android:text="OTP sent on +91"
+            android:textColor="#D94C54"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_otp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:id="@+id/layoutOTP"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/tv_otpNum">
+
+
+
+            <TextView
+                android:id="@+id/tv_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="start"
+                android:text="Enter OTP"
+                android:textColor="#A29E9E"
+                android:textSize="40sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_otp" />
+
+            <EditText
+                android:id="@+id/et_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="100dp"
+                android:background="@drawable/signin_btn_back"
+                android:fontFamily="@font/poppins"
+                android:hint="0 0 0 0 0 0"
+                android:imeOptions="actionDone"
+                android:layout_marginTop="15dp"
+                android:inputType="number"
+                android:maxLength="6"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:textColor="#A29E9E"
+                android:textColorHint="#4E4E4E"
+                android:textSize="21sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_otp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Resend OTP?"
+                android:id="@+id/tv_resend"
+                android:textColor="#D94C54"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+<androidx.appcompat.widget.AppCompatButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="25dp"
+    android:background="@drawable/signin_btn_submit"
+    android:fontFamily="@font/poppins"
+    android:padding="15dp"
+    android:layout_gravity="end"
+    android:layout_marginTop="0dp"
+
+    android:paddingVertical="15dp"
+    android:textAllCaps="false"
+    android:textColor="@color/white"
+    android:textSize="15sp"
+    android:id="@+id/btnCheck"
+    android:text="Verify"/>
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:weightSum="6"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintStart_toStartOf="parent"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/tv_otp">-->
+
+            <!--            <EditText-->
+            <!--                android:inputType="number"-->
+            <!--                android:maxLength="1"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:imeOptions="actionNext"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:background="@drawable/signin_btn_back"-->
+            <!--                android:fontFamily="@font/poppins"-->
+            <!--                android:hint="0"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+            <!--                android:paddingHorizontal="15dp"-->
+            <!--                android:paddingTop="10dp"-->
+            <!--                android:textSize="30sp" />-->
+            <!--            <EditText-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:inputType="number"-->
+            <!--                android:layout_weight="1"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginStart="10dp"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+            <!--                android:background="@drawable/signin_btn_back"-->
+            <!--                android:fontFamily="@font/poppins"-->
+            <!--                android:hint="0"-->
+
+            <!--                android:paddingHorizontal="15dp"-->
+            <!--                android:paddingTop="10dp"-->
+            <!--                android:textSize="30sp" />-->
+            <!--            <EditText-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:inputType="number"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:background="@drawable/signin_btn_back"-->
+            <!--            android:fontFamily="@font/poppins"-->
+            <!--            android:hint="0"-->
+            <!--            android:paddingHorizontal="15dp"-->
+            <!--            android:paddingTop="10dp"-->
+            <!--            android:textSize="40sp" />-->
+            <!--            <EditText-->
+            <!--                android:inputType="number"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:background="@drawable/signin_btn_back"-->
+            <!--            android:fontFamily="@font/poppins"-->
+            <!--            android:hint="0"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+
+            <!--            android:paddingHorizontal="15dp"-->
+            <!--            android:paddingTop="10dp"-->
+            <!--            android:textSize="40sp" />-->
+            <!--            <EditText-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:background="@drawable/signin_btn_back"-->
+            <!--            android:fontFamily="@font/poppins"-->
+            <!--            android:hint="0"-->
+            <!--                android:inputType="number"-->
+            <!--            android:paddingHorizontal="15dp"-->
+            <!--            android:paddingTop="10dp"-->
+            <!--            android:textSize="40sp" />-->
+            <!--            <EditText-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="10dp"-->
+            <!--            android:background="@drawable/signin_btn_back"-->
+            <!--            android:fontFamily="@font/poppins"-->
+            <!--            android:hint="0"-->
+            <!--                android:inputType="number"-->
+            <!--                android:textColor="#A29E9E"-->
+            <!--                android:textColorHint="#4E4E4E"-->
+            <!--            android:paddingHorizontal="15dp"-->
+            <!--            android:paddingTop="10dp"-->
+            <!--            android:layout_marginEnd="10dp"-->
+            <!--            android:textSize="40sp" />-->
+            <!--        </LinearLayout>-->
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
