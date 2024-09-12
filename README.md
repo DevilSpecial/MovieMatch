@@ -80,6 +80,15 @@ To set up the project on your local machine:
 - **Genre Selection**:
   <img src="images/Genre.jpg" alt="Genre Selection" width="350" style="display:block; margin-bottom:10px;">
 
+  ## Download the App
+
+To download the MovieMatch app, scan the QR code below or click the [Google Drive link](https://drive.google.com/file/d/15LU3TnAVUIxrJQA1WwJrGaQuuIOaqIi2/view?usp=sharing).
+
+- **QR Code**:
+  <img src="images/qrcode.png" alt="QR Code to Download MovieMatch" width="200">
+
+
+
 
 
 
