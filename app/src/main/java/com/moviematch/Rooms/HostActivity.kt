@@ -1,5 +1,7 @@
 package com.moviematch.Rooms
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
@@ -16,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.moviematch.Matching
 import com.moviematch.MatchingGenreActivity
 import com.moviematch.R
+import com.moviematch.RoomDeletionReceiver
 import com.moviematch.databinding.ActivityHostBinding
 import com.moviematch.databinding.ActivityTempBinding
 import com.moviematch.tempActivity.RoomData
@@ -42,6 +45,15 @@ class HostActivity : AppCompatActivity() {
         )
         if (roomId != null) {
             myRef.child(roomData.password!!).setValue(roomData)
+            val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(this, RoomDeletionReceiver::class.java)
+            intent.putExtra("room_id", room_id)
+
+            val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+
+            val triggerTime = System.currentTimeMillis() + 20 * 60 * 1000 // 20 minutes in milliseconds
+//            val triggerTime = System.currentTimeMillis() + 10000  // 10sec in milliseconds
+            alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
         }
 binding.btnGenre.setOnClickListener {
     val intent = Intent(this,Matching::class.java)

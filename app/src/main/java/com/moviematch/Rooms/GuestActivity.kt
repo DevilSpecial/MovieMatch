@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.moviematch.MatchingGenreActivity
 import com.moviematch.R
 import com.moviematch.databinding.ActivityGuestBinding
 import com.moviematch.tempActivity.RoomData
@@ -105,22 +106,38 @@ class GuestActivity : AppCompatActivity() {
             val roomData = dataSnapshot.getValue(RoomData::class.java)
             val username  = userSharedPreferences.getString("username","User2")
             if (roomData != null) {
-                ProgressBar.dismissProgressBar()
+
                 roomRef.child("guest").setValue(username)
                 val hostid = roomData.hostId
                 binding.tvHost.text = "You have joined the room of $hostid"
                 binding.tvHost.visibility =View.VISIBLE
-//                Toast.makeText(this, "Successfully joined the room of $hostid", Toast.LENGTH_SHORT).show()
-
-                binding.tvWait.visibility+View.VISIBLE
-                roomRef.child("genre").addValueEventListener(object : ValueEventListener {
+                binding.btnJoin.visibility = View.GONE
+                binding.et1.visibility=View.GONE
+                binding.et2.visibility=View.GONE
+                binding.et3.visibility=View.GONE
+                binding.et4.visibility=View.GONE
+                binding.et5.visibility=View.GONE
+                binding.et6.visibility=View.GONE
+                binding.tvWait.visibility=View.VISIBLE
+                ProgressBar.dismissProgressBar()
+                roomRef.child("genres").addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         val genre = dataSnapshot.getValue(String::class.java)
                         if (genre != null) {
-                            binding.tvWait.visibility=View.GONE
-                            // Genre has been updated, enable the "Start Swiping" button
+                            val final = genre.removeSurrounding("[","]")
+                            binding.tvWait.text = "$hostid has chosen the genre/s : $final"
                             binding.btnSwipe.isEnabled = true
                             binding.btnSwipe.visibility = View.VISIBLE
+                            binding.btnSwipe.setOnClickListener {
+                                val selectedGenres = genre
+                                    .removeSurrounding("[", "]")  // Removes the surrounding square brackets
+                                    .split(",")                    // Splits the string into a list
+                                    .map { it.trim() }              // Trims any extra spaces
+                                    .toMutableList()
+                                val intent = Intent(this@GuestActivity, MatchingGenreActivity::class.java)
+                                intent.putStringArrayListExtra("SelectedGenres", ArrayList(selectedGenres))
+                                startActivity(intent)
+                            }
                         }
                     }
 

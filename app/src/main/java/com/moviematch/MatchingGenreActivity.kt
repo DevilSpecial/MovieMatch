@@ -40,7 +40,7 @@ class MatchingGenreActivity : AppCompatActivity(),CardStackListener {
         val bndl =intent.extras
         val genre = bndl?.getStringArrayList("SelectedGenres")
         val pw = bndl?.getString("roomId")
-        sendGenretoDB(pw)
+//        sendGenretoDB(pw)
         binding.tvGenres.text = genre?.joinToString(", ")
         val selectedGenres = bndl!!.getStringArrayList("SelectedGenres")
         val genreIds = selectedGenres?.mapNotNull { genreName ->

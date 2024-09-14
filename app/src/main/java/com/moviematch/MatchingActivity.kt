@@ -3,22 +3,23 @@ package com.moviematch
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.content.Intent
-import android.graphics.fonts.FontFamily
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import com.google.android.material.chip.Chip
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.moviematch.databinding.ActivityMatchingBinding
 
 
 class Matching : AppCompatActivity() {
     private var selectedChipCount = 0
     private val maxSelectionCount = 3
+    val database = Firebase.database
     var pw:String? = null
     lateinit var binding : ActivityMatchingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +30,7 @@ class Matching : AppCompatActivity() {
         GetTheChips()
         val bndl =intent.extras
         pw = bndl?.getString("roomId")
-        Toast.makeText(this,pw,Toast.LENGTH_SHORT).show()
+
         binding.btnSubmit.setOnClickListener {
             sendData()
         }
@@ -49,15 +50,25 @@ class Matching : AppCompatActivity() {
             // Create an intent to start the next activity
             val intent = Intent(this, MatchingGenreActivity::class.java)
             intent.putExtra("roomId",pw)
+            Toast.makeText(this@Matching,selectedGenres.toString(),Toast.LENGTH_SHORT).show()
+            sendGenretoDB(selectedGenres)
             intent.putStringArrayListExtra("SelectedGenres", ArrayList(selectedGenres))
             startActivity(intent)
         } else {
             Toast.makeText(this, "Please select at least one genre.", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun sendGenretoDB(selectedGenres: MutableList<String>) {
+        val roomRef = database.getReference("room").child(pw.toString())
+        roomRef.get().addOnSuccessListener { dataSnapshot ->
+            roomRef.child("genres").setValue(selectedGenres.toString())
+        }.addOnFailureListener {exception ->
+            Log.e("FirebaseError", "Failed to send genre to DB", exception)
+            Toast.makeText(this, "Room not found or other error.", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     private fun GetTheChips() {
-
         GenreData.genreMap.forEach { (genreId, genreName) ->
             val chip = Chip(this).apply {
                 text = genreName
