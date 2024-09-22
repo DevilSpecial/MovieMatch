@@ -65,14 +65,13 @@ class GenderActivity : AppCompatActivity() {
     private fun addtoDatabase() {
         val name = sharedPreferences.getString("name","User")
         val username =  sharedPreferences.getString("username","abcdef")
-        val number = sharedPreferences.getString("number","000000")
+
         val gender = sharedPreferences.getString("gender","Gender")
         val email = sharedPreferences.getString("email","abc@xyz")
         val pw = sharedPreferences.getString("password","123456")
         val user = hashMapOf(
             "Name" to name,
             "Username" to username,
-            "Phone Number" to number,
             "Gender" to gender,
             "Email" to email,
             "Password" to pw

@@ -74,7 +74,7 @@ class tempActivity : AppCompatActivity() {
     data class RoomData(
         val hostId: String?=null,
         val password: String?=null,
-        val guestId:String?=null
+        val guest:String?=null
     ){
         constructor(hostId: String?, password: String) : this(hostId, password, null)
 

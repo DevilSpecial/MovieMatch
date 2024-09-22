@@ -76,14 +76,13 @@ class UserNameActivity : AppCompatActivity() {
                     editor.apply()
                     editor.commit()
                     ProgressBar.dismissProgressBar()
-                    val intent = Intent(this, PhoneNumberActivity::class.java)
+                    val intent = Intent(this, PasswordActivity::class.java)
                     startActivity(intent)
                     finish()
                     this.overridePendingTransition(R.anim.animate_zoom_enter, R.anim.animate_zoom_exit)
                 }
             }
             .addOnFailureListener { exception ->
-                // Handle any errors that occur when checking the username
                 binding.tverror.text = "Error checking username availability. Please try again."
                 fadeInView(binding.tverror)
                 Handler(Looper.getMainLooper()).postDelayed({

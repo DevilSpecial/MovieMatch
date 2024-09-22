@@ -136,6 +136,7 @@ class GuestActivity : AppCompatActivity() {
                                     .toMutableList()
                                 val intent = Intent(this@GuestActivity, MatchingGenreActivity::class.java)
                                 intent.putStringArrayListExtra("SelectedGenres", ArrayList(selectedGenres))
+                                intent.putExtra("roomId",password)
                                 startActivity(intent)
                             }
                         }

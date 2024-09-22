@@ -155,7 +155,8 @@ class PhoneNumberActivity : AppCompatActivity() {
             val intent = Intent(this@PhoneNumberActivity,PhoneNumberActivity::class.java)
             startActivity(intent)
 
-        }}
+        }
+   }
        private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
            mAuth.signInWithCredential(credential)
                .addOnCompleteListener(this@PhoneNumberActivity) { task ->

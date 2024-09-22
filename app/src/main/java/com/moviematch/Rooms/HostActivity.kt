@@ -85,15 +85,14 @@ binding.btnGenre.setOnClickListener {
     }
 
     private fun startCopy() {
-        val code = binding.tvCode.text.toString() // Get the text from TextView
+        val code = binding.tvCode.text.toString()
 
-        // Get the clipboard system service
+
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
-        // Create a new ClipData with the text
         val clip = ClipData.newPlainText("Room Code", code)
 
-        // Set the ClipData to the clipboard
+
         clipboard.setPrimaryClip(clip)
 
     }

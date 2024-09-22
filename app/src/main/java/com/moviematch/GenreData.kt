@@ -22,14 +22,6 @@ object GenreData {
             put(878, "Science Fiction")
             put(53, "Thriller")
             put(10752, "War")
-            put(10759, "Action & Adventure")
-            put(10762, "Kids")
-            put(10763, "News")
-            put(10764, "Reality")
-            put(10765, "Sci-Fi & Fantasy")
-            put(10766, "Soap")
-            put(10767, "Talk")
-            put(10768, "War & Politics")
             put(37, "Western")
         }
     }

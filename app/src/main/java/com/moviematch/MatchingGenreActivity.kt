@@ -1,5 +1,7 @@
 package com.moviematch
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,19 +30,22 @@ import retrofit2.Response
 class MatchingGenreActivity : AppCompatActivity(),CardStackListener {
     var totalPages=0
     val database = Firebase.database
+    lateinit var userSharedPreferences: SharedPreferences
     var genreId: String?=null
+    var pw :String?=null
     lateinit var binding : ActivityMatchingGenreBinding
     lateinit var cardStackMovieAdapter: CardStackMovieAdapter
     lateinit var cardStackLayoutManager: CardStackLayoutManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userSharedPreferences = getSharedPreferences("USER", Context.MODE_PRIVATE)
         binding = ActivityMatchingGenreBinding.inflate(layoutInflater)
         setContentView(binding.root)
         cardStackMovieAdapter = CardStackMovieAdapter(emptyList(), this)
         val bndl =intent.extras
         val genre = bndl?.getStringArrayList("SelectedGenres")
-        val pw = bndl?.getString("roomId")
-//        sendGenretoDB(pw)
+        pw = bndl?.getString("roomId")
+        Toast.makeText(this,pw,Toast.LENGTH_SHORT).show()
         binding.tvGenres.text = genre?.joinToString(", ")
         val selectedGenres = bndl!!.getStringArrayList("SelectedGenres")
         val genreIds = selectedGenres?.mapNotNull { genreName ->
@@ -94,19 +99,32 @@ class MatchingGenreActivity : AppCompatActivity(),CardStackListener {
     }
 
     override fun onCardSwiped(direction: Direction) {
+        val currUser = userSharedPreferences.getString("username", "User2")
         val currentPosition = cardStackLayoutManager.topPosition - 1
         val swipedMovie = (binding.cardStack.adapter as CardStackMovieAdapter).getMovieAtPosition(currentPosition)
+        val roomRef = Firebase.database.getReference("room").child(pw.toString())
+        roomRef.get().addOnSuccessListener { dataSnapshot ->
+            val roomData = dataSnapshot.getValue(RoomData::class.java)
+//        Toast.makeText(this,roomData?.guest,Toast.LENGTH_SHORT).show()
         when (direction) {
             Direction.Right -> {
-                Log.d("Movie",swipedMovie.title.toString())
+                if (currUser == roomData?.hostId) {
+                    Log.d("Movie host", swipedMovie.title.toString())
+                    roomRef.child("likedMovies").child("hostLikes").push().setValue(swipedMovie.title)
+                } else if (currUser == roomData?.guest) {
+                    Log.d("Movie guest", swipedMovie.title.toString())
+                    roomRef.child("likedMovies").child("guestLikes").push().setValue(swipedMovie.title)
+                }
             }
             Direction.Left -> {
-                Log.d("Movie",swipedMovie.title.toString())
+                // Log the movie title when swiped left
+                Log.d("Movie", "Left swipe: ${swipedMovie.title.toString()}")
             }
             else -> {
-
+                // Handle other cases if necessary
             }
-        }
+        }}
+
     }
 
     override fun onCardRewound() {
@@ -137,12 +155,11 @@ class MatchingGenreActivity : AppCompatActivity(),CardStackListener {
                 Log.d("API_REQUEST", "Request URL: ${requestUrl}")
                 if (response.isSuccessful && response.body() != null) {
                     val responseBody = response.body()!!.results
+                    responseBody.shuffled()
                     binding.cardStack.layoutManager = cardStackLayoutManager
 //                    cardStackLayoutManager.setVisibleCount(1)
                     cardStackLayoutManager.setCanScrollHorizontal(true)
                     cardStackLayoutManager.setStackFrom(StackFrom.Top)
-
-                  
                     val adapter = CardStackMovieAdapter(responseBody, this@MatchingGenreActivity)
                     binding.cardStack.adapter = adapter
                     ProgressBar.dismissProgressBar()

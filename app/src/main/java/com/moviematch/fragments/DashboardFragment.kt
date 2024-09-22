@@ -77,16 +77,15 @@ lateinit var binding: FragmentDashboardBinding
                 if (!documents.isEmpty) {
                     val document = documents.documents[0]
                     val name = document.getString("Name") ?: "User"
-                    val number = document.getString("Phone Number") ?: "000000"
                     val gender = document.getString("Gender") ?: "Gender"
                     val email = document.getString("Email") ?: "abc@xyz"
                     val pw = document.getString("Password") ?: "123456"
 
-                    storeUserDetails(name, username, number, gender, email, pw)
+                    storeUserDetails(name, username, gender, email, pw)
                     
                     binding.tvUser.text = name
                     binding.tvEmail.text = email
-                    binding.tvNum.text = number
+                    binding.tvNum.text = gender
                    ProgressBar.dismissProgressBar()
                 } else {
                     Toast.makeText(requireContext(), "User details not found.", Toast.LENGTH_SHORT).show()
@@ -97,11 +96,10 @@ lateinit var binding: FragmentDashboardBinding
             }
     }
 
-    private fun storeUserDetails(name: String, username: String, number: String, gender: String, email: String, pw: String) {
+    private fun storeUserDetails(name: String, username: String, gender: String, email: String, pw: String) {
         val editor = userSharedPreferences.edit()
         editor.putString("name", name)
         editor.putString("username", username)
-        editor.putString("number", number)
         editor.putString("gender", gender)
         editor.putString("email", email)
         editor.putString("password", pw)

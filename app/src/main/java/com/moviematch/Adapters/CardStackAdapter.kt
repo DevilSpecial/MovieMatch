@@ -26,7 +26,7 @@ class CardStackMovieAdapter(private var data: List<MovieDataItem>, private val c
     }
 
     override fun getItemCount(): Int {
-        return data.count()
+        return 10
     }
     fun getMovieAtPosition(position: Int): MovieDataItem {
         return data[position]
