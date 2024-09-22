@@ -30,7 +30,7 @@
 1. **Authentication**: Users sign up or log in through Firebase Authentication.
 2. **Create or Join Rooms**: Hosts can create rooms, while others can join using an invite code.
 3. **Select a Genre**: Hosts choose a genre, and guests are notified of the selection in real time.
-4. **Movie Swiping (Host Only)**: The host can swipe through movies from the selected genre, powered by the TMDb API.
+4. **Movie Swiping**: The host and guest can swipe through movies from the selected genre, powered by the TMDb API and Firebase RealTime DB.
 
 ## Getting Started
 
@@ -53,7 +53,6 @@ To set up the project on your local machine:
 
 ## Future Enhancements
 
-- **Swiping and Matching for Guests**: Both hosts and guests will be able to swipe on movies, and the app will help them match on a movie selection.
 - **Push Notifications**: Notify users when a host selects a new genre or when a movie match is found.
 - **Enhanced Search and Filters**: Implement advanced movie search capabilities and filters to improve user choices.
 
