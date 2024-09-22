@@ -82,7 +82,7 @@ To set up the project on your local machine:
 
   ## Download the App
 
-To download the MovieMatch app, scan the QR code below or click the [Google Drive link](https://drive.google.com/file/d/15LU3TnAVUIxrJQA1WwJrGaQuuIOaqIi2/view?usp=sharing).
+To download the MovieMatch app, scan the QR code below or click the [Google Drive link](https://drive.google.com/file/d/1Cw5UB-WafMj9w56HH2Yupy4IDfmceCBV/view?usp=drive_link).
 
 - **QR Code**:
   <img src="images/qrcode.png" alt="QR Code to Download MovieMatch" width="200">
